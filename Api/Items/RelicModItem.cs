@@ -2,6 +2,9 @@
 
 namespace Abyss.Api.Items;
 
+/// <summary>
+/// A harvestable moditem using RelicItemData
+/// </summary>
 public abstract class RelicModItem : HarvestableModItem<RelicItemData>
 {
     /// <inheritdoc />

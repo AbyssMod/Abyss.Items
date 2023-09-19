@@ -1,5 +1,8 @@
 namespace Abyss.Api.Items;
 
+/// <summary>
+/// A non-spatial moditem using MessageItemData
+/// </summary>
 public abstract class MessageModItem : NonSpatialModItem<MessageItemData>
 {
 

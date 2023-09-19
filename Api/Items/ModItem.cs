@@ -2,13 +2,29 @@ using UnityEngine;
 
 namespace Abyss.Api.Items;
 
+/// <summary>
+/// Base class for all modded items
+/// </summary>
+/// <typeparam name="T"></typeparam>
 [PublicAPI]
 public abstract class ModItem<T> : ScriptableObjectModContent<T> where T : ItemData
 {
+    /// <summary>
+    /// The type of item this is
+    /// </summary>
     public virtual ItemType Type => ItemType.GENERAL;
+    /// <summary>
+    /// The subtype of item this is
+    /// </summary>
     public virtual ItemSubtype SubType => ItemSubtype.GENERAL;
+    /// <summary>
+    /// The icon to use for this item, set this to the name of the image file without the extension
+    /// </summary>
     public virtual string ItemTypeIcon => GetType().Name + "-ItemType";
 
+    /// <summary>
+    /// The icon to use for this item, override this if you dont want to use <see cref="ItemTypeIcon"/>
+    /// </summary>
     public virtual Sprite? ItemTypeImage => GetSprite(ItemTypeIcon);
 
     internal const string ItemTableDefinition = "Items";
@@ -40,6 +56,9 @@ public abstract class ModItem<T> : ScriptableObjectModContent<T> where T : ItemD
     }
 }
 
+/// <summary>
+/// A generic moditem using ItemData
+/// </summary>
 [PublicAPI]
 public abstract class ModItem : ModItem<ItemData>
 {

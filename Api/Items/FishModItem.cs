@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace Abyss.Api.Items;
 
+/// <summary>
+/// A harvestable moditem using FishItemData
+/// </summary>
 public abstract class FishModItem : HarvestableModItem<FishItemData>
 {
     /// <inheritdoc />
@@ -11,11 +14,29 @@ public abstract class FishModItem : HarvestableModItem<FishItemData>
     /// <inheritdoc />
     public sealed override ItemSubtype SubType => ItemSubtype.FISH;
 
+    /// <summary>
+    /// The minimum size of the fish in centimeters
+    /// </summary>
     public virtual float MinSizeCentimeters => 0f;
+    /// <summary>
+    /// The maximum size of the fish in centimeters
+    /// </summary>
     public virtual float MaxSizeCentimeters => 0f;
+    /// <summary>
+    /// The aberrations that are linked to this fish
+    /// </summary>
     public virtual List<FishItemData> Aberrations => new();
+    /// <summary>
+    /// Whether this fish is an aberration
+    /// </summary>
     public virtual bool IsAberration => false; //todo generic helper class for making aberrations
+    /// <summary>
+    /// Whether this fish can be caught during the day
+    /// </summary>
     public virtual bool Day => true;
+    /// <summary>
+    /// Whether this fish can be caught during the night
+    /// </summary>
     public virtual bool Night => true;
 
     /// <inheritdoc />

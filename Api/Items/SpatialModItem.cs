@@ -3,18 +3,34 @@ using UnityEngine;
 
 namespace Abyss.Api.Items;
 
+/// <summary>
+/// A moditem using SpatialItemData
+/// </summary>
+/// <typeparam name="T"></typeparam>
 [PublicAPI]
 public abstract class SpatialModItem<T> : ModItem<T> where T : SpatialItemData
 {
+    /// <summary>
+    /// The dimensions of the item
+    /// </summary>
     public virtual List<Vector2Int> Dimensions => new()
     {
         new(0, 0)
     };
 
+    /// <summary>
+    /// How much the item is worth at the trader
+    /// </summary>
     public abstract decimal Value { get; }
 
+    /// <summary>
+    /// The sprite to use for the item, set this to the name of the image file without the extension
+    /// </summary>
     public virtual string SpriteIcon => GetType().Name + "-Sprite";
 
+    /// <summary>
+    /// The sprite to use for the item, override this if you dont want to use <see cref="SpriteIcon"/>
+    /// </summary>
     public virtual Sprite? SpriteImage => GetSprite(SpriteIcon);
 
     /// <inheritdoc />
@@ -45,6 +61,9 @@ public abstract class SpatialModItem<T> : ModItem<T> where T : SpatialItemData
     }
 }
 
+/// <summary>
+/// A generic moditem using SpatialItemData
+/// </summary>
 [PublicAPI]
 public abstract class SpatialModItem : SpatialModItem<SpatialItemData>
 {
