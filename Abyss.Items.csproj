@@ -27,6 +27,10 @@
         <ProjectReference Include="..\Abyss.Core\Abyss.Core.csproj" Private="false" />
     </ItemGroup>
     
+    <ItemGroup>
+      <Content Include=".github\workflows\build.yml" />
+    </ItemGroup>
+    
     <Import Condition="Exists('..\..\dredge.targets')" Project="..\..\dredge.targets"/>
     <Import Condition="!Exists('..\..\dredge.targets')" Project="..\Abyss.Core\dredge.targets"/>
 </Project>
