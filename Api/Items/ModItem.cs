@@ -27,19 +27,19 @@ public abstract class ModItem<T> : ScriptableObjectModContent<T> where T : ItemD
     /// </summary>
     public virtual Sprite? ItemTypeImage => GetSprite(ItemTypeIcon);
 
-    internal const string ItemTableDefinition = "Items";
-
     /// <inheritdoc />
     public override void Register()
     {
         base.Register();
         Item.id = Id;
-        Item.itemType = Type;
-        Item.itemSubtype = SubType;
         Item.itemNameKey = LocalizationManager.CreateLocalizedString(Id, DisplayName);
         Item.itemDescriptionKey = LocalizationManager.CreateLocalizedString(Id + "_Description", Description);
         Item.itemInsaneTitleKey = Item.itemNameKey;
         Item.itemInsaneDescriptionKey = Item.itemDescriptionKey;
+        Item.linkedDialogueNode = null;
+        Item.dialogueNodeSpecificDescription = null;
+        Item.itemType = Type;
+        Item.itemSubtype = SubType;
         Item.tooltipTextColor = Color.white;
         Item.tooltipNotesColor = Color.white;
         Item.itemTypeIcon = ItemTypeImage;

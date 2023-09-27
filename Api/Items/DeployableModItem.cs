@@ -22,9 +22,9 @@ public abstract class DeployableModItem : HarvesterModItem<DeployableItemData>
     public override void Register()
     {
         base.Register();
-        Item.catchRate = CatchRate;
-        Item.gridConfig = null;
-        Item.maxDurabilityDays = MaxDurabilityDays;
         Item.timeBetweenCatchRolls = TimeBetweenCatchRolls;
+        Item.catchRate = CatchRate;
+        Item.maxDurabilityDays = MaxDurabilityDays;
+        Item.gridConfig = null;
     }
 }

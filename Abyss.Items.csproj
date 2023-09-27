@@ -21,6 +21,7 @@
         <Version>0.0.1</Version>
 
         <Authors>GrahamKracker</Authors>
+        <DontUseDredgeLibs>true</DontUseDredgeLibs>
     </PropertyGroup>
     
     <ItemGroup>
@@ -28,7 +29,7 @@
     </ItemGroup>
     
     <ItemGroup>
-      <Content Include=".github\workflows\build.yml" />
+        <None Include=".github\workflows\build.yml" />
     </ItemGroup>
     
     <Import Condition="Exists('..\..\dredge.targets')" Project="..\..\dredge.targets"/>
