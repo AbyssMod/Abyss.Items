@@ -18,6 +18,11 @@ public abstract class DeployableModItem : HarvesterModItem<DeployableItemData>
     /// </summary>
     public virtual float TimeBetweenCatchRolls => 1;
 
+    /// <summary>
+    /// The grid configuration of the harvester
+    /// </summary>
+    public virtual GridConfiguration? GridConfig => null;
+
     /// <inheritdoc />
     public override void Register()
     {
@@ -25,6 +30,6 @@ public abstract class DeployableModItem : HarvesterModItem<DeployableItemData>
         Item.timeBetweenCatchRolls = TimeBetweenCatchRolls;
         Item.catchRate = CatchRate;
         Item.maxDurabilityDays = MaxDurabilityDays;
-        Item.gridConfig = null;
+        Item.gridConfig = GridConfig;
     }
 }

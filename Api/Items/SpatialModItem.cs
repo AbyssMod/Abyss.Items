@@ -33,31 +33,110 @@ public abstract class SpatialModItem<T> : ModItem<T> where T : SpatialItemData
     /// </summary>
     public virtual Sprite? SpriteImage => GetSprite(SpriteIcon);
 
+    /// <summary>
+    /// Whether or not this item can be sold
+    /// </summary>
+    public virtual bool CanBeSoldByPlayer => true;
+
+    /// <summary>
+    /// Whether or not this item can be sold in bulk sell actions
+    /// </summary>
+    public virtual bool CanBeSoldInBulkAction => true;
+
+    /// <summary>
+    /// Whether or not this item can be discarded by the player
+    /// </summary>
+    public virtual bool CanBeDiscardedByPlayer => true;
+
+    public virtual bool canBeDiscardedDuringQuestPickup => true;
+
+    /// <summary>
+    /// Whether or not this item has a custom sell value
+    /// </summary>
+    public virtual bool HasSellOverride => false;
+
+    /// <summary>
+    /// if <see cref="HasSellOverride"/> is true, this is the value to sell the item for
+    /// </summary>
+    public virtual decimal SellOverrideValue => decimal.Zero;
+
+    /// <summary>
+    /// The number of research points required to have this item, used in researchable items (engines, nets, lights, etc)
+    /// </summary>
+    public virtual int researchPointsRequired => 0;
+
+    /// <summary>
+    /// Whether or not this item can be bought without needing to research it
+    /// </summary>
+    public virtual bool buyableWithoutResearch => researchPointsRequired == 0;
+
+    /// <summary>
+    /// The background color of the item
+    /// </summary>
+    public virtual Color ItemColor => new(65f, 65f, 65f, byte.MaxValue);
+
+    public virtual int squishFactor => 0;
+
+    /// <summary>
+    /// The move behavior of the item
+    /// </summary>
+    public virtual MoveMode moveMode => MoveMode.FREE;
+
+    /// <summary>
+    /// The damaged behavior of the item
+    /// </summary>
+    public virtual DamageMode damageMode => DamageMode.DESTROY;
+
+    /// <summary>
+    /// The item prerequisites for this item
+    /// </summary>
+    public virtual List<OwnedItemResearchablePrerequisite> itemOwnPrerequisites => new();
+
+    /// <summary>
+    /// The research prerequisites for this item
+    /// </summary>
+    public virtual List<ResearchedItemResearchablePrerequisite> researchPrerequisites => new();
+
+    /// <summary>
+    /// Whether or not this item ignores damaged squares when placing, used ingame for equipment to allow new equipment to be installed over damaged equipment
+    /// </summary>
+    public virtual bool IgnoreDamageWhenPlacing => false;
+
+    /// <summary>
+    /// Whether this item is displayed underneath other items, only used ingame for the damage item
+    /// </summary>
+    public virtual bool IsUnderlayItem => false;
+
+    /// <summary>
+    /// WHether this item can go into storagwe
+    /// </summary>
+    public virtual bool ForbidStorageTray => false;
+
     /// <inheritdoc />
     public override void Register()
     {
         base.Register();
-        Item.canBeSoldByPlayer = true;
-        Item.canBeSoldInBulkAction = true;
+        Item.canBeSoldByPlayer = CanBeSoldByPlayer;
+        Item.canBeSoldInBulkAction = CanBeSoldInBulkAction;
         Item.value = Value;
-        Item.hasSellOverride = false;
-        Item.sellOverrideValue = decimal.Zero;
+        Item.hasSellOverride = HasSellOverride;
+        Item.sellOverrideValue = SellOverrideValue;
         Item.sprite = SpriteImage;
-        Item.platformSpecificSpriteOverrides = null;
-        Item.itemColor = new Color(0.1922f, 0.1922f, 0.1922f, 255);
-        Item.canBeDiscardedByPlayer = true;
-        Item.canBeDiscardedDuringQuestPickup = true;
-        Item.damageMode = DamageMode.NONE;
-        Item.moveMode = MoveMode.FREE;
-        Item.ignoreDamageWhenPlacing = false;
-        Item.isUnderlayItem = false;
-        Item.forbidStorageTray = false;
+        Item.platformSpecificSpriteOverrides = null; //probably doesnt need to be exposed
+        Item.itemColor = ItemColor;
+        Item.canBeDiscardedByPlayer = CanBeDiscardedByPlayer;
+        Item.canBeDiscardedDuringQuestPickup = canBeDiscardedDuringQuestPickup;
+        Item.damageMode = damageMode;
+        Item.moveMode = moveMode;
+        Item.ignoreDamageWhenPlacing = IgnoreDamageWhenPlacing;
+        Item.isUnderlayItem = IsUnderlayItem;
+        Item.forbidStorageTray = ForbidStorageTray;
         Item.dimensions = Dimensions;
-        Item.squishFactor = 1f;
-        Item.itemOwnPrerequisites = null;
-        Item.researchPrerequisites = null;
-        Item.researchPointsRequired = 0;
-        Item.buyableWithoutResearch = true;
+        Item.squishFactor = squishFactor;
+        Item.itemOwnPrerequisites = itemOwnPrerequisites;
+        Item.researchPrerequisites = researchPrerequisites;
+        Item.researchPointsRequired = researchPointsRequired;
+        Item.buyableWithoutResearch = buyableWithoutResearch;
     }
 }
 

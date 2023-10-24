@@ -7,7 +7,7 @@ namespace Abyss.Api.Items;
 /// <summary>
 /// A spatial moditem using HarvesterItemData
 /// </summary>
-/// <typeparam name="T"></typeparam>
+[PublicAPI]
 public abstract class HarvesterModItem<T> : SpatialModItem<T> where T : HarvesterItemData
 {
     /// <inheritdoc />

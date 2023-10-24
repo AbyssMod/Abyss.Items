@@ -5,6 +5,7 @@ namespace Abyss.Api.Items;
 /// <summary>
 /// A harvester moditem using DredgeItemData
 /// </summary>
+[PublicAPI]
 public abstract class DredgeModItem : HarvesterModItem<DredgeItemData>
 {
     /// <inheritdoc />

@@ -3,6 +3,7 @@
 /// <summary>
 /// A harvester moditem using RodItemData
 /// </summary>
+[PublicAPI]
 public abstract class RodModItem : HarvesterModItem<RodItemData>
 {
     /// <inheritdoc />
@@ -18,5 +19,6 @@ public abstract class RodModItem : HarvesterModItem<RodItemData>
     {
         base.Register();
         Item.fishingSpeedModifier = FishingSpeedModifier;
+        Item.canBeDiscardedByPlayer = true;
     }
 }

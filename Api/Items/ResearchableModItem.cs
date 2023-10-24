@@ -9,7 +9,7 @@ public abstract class ResearchableModItem : NonSpatialModItem<ResearchableItemDa
     /// <summary>
     /// The benefit this item provides
     /// </summary>
-    public virtual ResearchBenefitType ResearchBenefitType => ResearchBenefitType.MOVEMENT_SPEED;
+    public abstract ResearchBenefitType ResearchBenefitType { get; }
     /// <summary>
     /// The value of the benefit this item provides
     /// </summary>
@@ -20,6 +20,11 @@ public abstract class ResearchableModItem : NonSpatialModItem<ResearchableItemDa
     /// </summary>
     public virtual int DaysToResearch => 1;
 
+    /// <summary>
+    /// The description to show once the item is done being researched
+    /// </summary>
+    public virtual string CompletedDescription => "";
+
     /// <inheritdoc />
     public override void Register()
     {
@@ -27,6 +32,6 @@ public abstract class ResearchableModItem : NonSpatialModItem<ResearchableItemDa
         Item.daysToResearch = DaysToResearch;
         Item.researchBenefitType = ResearchBenefitType;
         Item.researchBenefitValue = ResearchBenefitValue;
-        Item.completedDescriptionKey = null;
+        Item.completedDescriptionKey = LocalizationManager.CreateLocalizedString(Id + "_CompletedDescription", CompletedDescription);
     }
 }

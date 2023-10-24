@@ -56,6 +56,22 @@ public abstract class HarvestableModItem<T> : SpatialModItem<T> where T : Harves
     /// </summary>
     public virtual ZoneEnum ZonesFoundIn => ZoneEnum.ALL;
 
+    /// <summary>
+    /// The weight of this harvestable, used to control how often it spawns
+    /// </summary>
+    public virtual int HarvestableItemWeight => 1;
+
+    /// <summary>
+    /// Whether or not to regenerate the harvest spot when this harvestable is destroyed, mainly used for critical items for quests or other special, non-replaceable items
+    /// </summary>
+    public virtual bool RegenHarvestSpotOnDestroy => false;
+
+    /// <summary>
+    /// Whether or not this harvestable can be replaced with a research item, only used in dredging and crab pots
+    /// </summary>
+    public virtual bool CanBeReplacedWithResearchItem => false;
+
+
 
     /// <inheritdoc />
     public override void Register()
@@ -64,8 +80,8 @@ public abstract class HarvestableModItem<T> : SpatialModItem<T> where T : Harves
         Item.harvestMinigameType = HarvestMinigameType;
         Item.perSpotMin = PerSpotMin;
         Item.perSpotMax = PerSpotMax;
-        Item.harvestItemWeight = 1f;
-        Item.regenHarvestSpotOnDestroy = false;
+        Item.harvestItemWeight = HarvestableItemWeight;
+        Item.regenHarvestSpotOnDestroy = RegenHarvestSpotOnDestroy;
         Item.harvestPOICategory = HarvestPoiCategory;
         Item.harvestableType = HarvestableType;
         Item.harvestDifficulty = HarvestDifficulty;

@@ -3,6 +3,7 @@ namespace Abyss.Api.Items;
 /// <summary>
 /// A spatial moditem using DamageItemData
 /// </summary>
+[PublicAPI]
 public abstract class DamageModItem : SpatialModItem<DamageItemData>
 {
     /// <inheritdoc />

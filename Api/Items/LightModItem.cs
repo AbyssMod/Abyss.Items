@@ -4,6 +4,7 @@ namespace Abyss.Api.Items;
 /// <summary>
 /// A spatial moditem using LightItemData
 /// </summary>
+[PublicAPI]
 public abstract class LightModItem : SpatialModItem<LightItemData>
 {
     /// <inheritdoc />

@@ -3,6 +3,7 @@ namespace Abyss.Api.Items;
 /// <summary>
 /// A spatial moditem using EngineItemData
 /// </summary>
+[PublicAPI]
 public abstract class EngineModItem : SpatialModItem<EngineItemData>
 {
     /// <inheritdoc />
